@@ -79,3 +79,42 @@ preparer_output/
 # Docker persistent data
 data/
 
+# Private conversion state, snapshots and benchmarks (transfer separately)
+/annotated_script.before-recovery.json
+/recovery-manifest.json
+/completed-trials-summary.json
+/installed-packages.txt
+/checkpoints/
+/saved-before-stop-*/
+/benchmarks/
+/forty-batch-trial*/
+/server-trial-*/
+/next-40-queue.json
+/next-40-queue.lock
+/next-40-stop-requested
+/checkpoint-manifest.json
+/trial-history/
+/STATE.md
+/RESUME-AND-SERVER.md
+/app/static/conversion-status.json
+
+# Local launchers, one-off probes and superseded source backups
+/Benchmark-*.py
+/Continue-Conversion*.py
+/Download-Models.py
+/Start-*.ps1
+/Start-*.cmd
+/Run-40-Batches.before-queue.py
+/app/setup_smoke.py
+*.before-progress
+
+# Downloaded books, generated audio and model artifacts
+*.epub
+*.mp3
+*.wav
+*.m4b
+*.safetensors
+*.pt
+*.pth
+*.gguf
+*.zip

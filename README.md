@@ -108,12 +108,14 @@ Requires a free [ngrok account](https://dashboard.ngrok.com/signup) for the web 
 For integration into automated pipelines or server deployments:
 
 ```bash
-git clone https://github.com/Finrandojin/alexandria-audiobook.git
+git clone https://github.com/Namigator/alexandria-audiobook.git
 cd alexandria-audiobook
 docker compose up --build
 ```
 
 Requires [Docker](https://docs.docker.com/get-docker/) with the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html). The web UI is available at `http://localhost:4200`. TTS models download on first use and are cached in a Docker volume. User data (uploads, voice configs, trained LoRA adapters, audio output) persists via bind mounts to the project directory.
+
+For an existing saved conversion, use the [server resume and checkpoint guide](SERVER-RESUME.md). It explains transferring private job data separately, validating completed audio, and running bounded batches without regenerating saved segments.
 
 ## First Launch — What to Expect
 

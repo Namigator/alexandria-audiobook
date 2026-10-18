@@ -409,8 +409,10 @@ def _stream_subprocess_to_logs(command: List[str], cwd: str, state: dict, log_pr
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
+        encoding="utf-8",
+        errors="replace",
         cwd=cwd,
-        env=os.environ.copy(),
+        env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"},
     )
 
     if "process" in state:
@@ -445,6 +447,7 @@ def _stream_subprocess_to_logs(command: List[str], cwd: str, state: dict, log_pr
                 state["logs"].pop(0)
 
     reader.join()
+    process.stdout.close()
     process.wait()
     return process.returncode
 

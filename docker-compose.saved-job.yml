@@ -1,0 +1,21 @@
+# Run from a verified portable checkpoint root. The entire directory is mounted
+# so atomic JSON replacement remains possible; individual JSON bind mounts fail.
+services:
+  alexandria:
+    build: .
+    ports:
+      - '4200:4200'
+    environment:
+      ALEXANDRIA_CONFIG_PATH: /alexandria/app/config.json
+    volumes:
+      - .:/alexandria
+      - hf_cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+volumes:
+  hf_cache:
